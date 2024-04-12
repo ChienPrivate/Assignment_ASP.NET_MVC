@@ -1,0 +1,32 @@
+﻿<h1 class="pb-4"></h1>
+<div class="container text-center" style="height:708px">
+    <div class="bg-white w-50 d-block mx-0 mx-auto">
+        <div class="card rounded" >
+            <div class="card-header">
+                <h2>Xác thực email</h2>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="form-floating mt-2 mb-2">
+                        <input id="verify" name="inputKey" class="form-control" />
+                        <label for="verify">mã xác thực</label>
+                    </div>
+                    <div>
+                        <form method="post" class="mt-2 mb-2" asp-action="ResendMail">
+                            <button type="submit" asp-action="ResendMail" class="btn btn-info rounded">Gửi lại mã</button>
+                        </form>
+                        <button type="submit" class="btn btn-primary rounded">Xác nhận</button>
+                    </div>
+                    <div asp-validation-summary="All" class="mt-2 mb-2 text-danger">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,84 @@
+﻿@model EUser
+
+<div class="container h-100">
+    <h1 class="pt-4"></h1>
+    <div class="bg-light border-0 rounded w-50 d-block mx-auto" data-aos="fade-up" data-aos-duration="1000">
+        <form class="container" method="post">
+
+            <input asp-for="EUserId" value="@ViewData["newId"]" hidden/>
+            <input asp-for="EUserRole" value="Customer" hidden/>
+            <div class="text-center">
+                <h1 class="pt-4">
+                    Tạo tài khoản
+                </h1>
+            </div>
+            <div class="form-floating mb-3 mt-3" data-aos="fade-left" data-aos-duration="1100">
+                <input type="email"
+                       class="form-control border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                       id="email"
+                       placeholder="Enter email" 
+                       asp-for="Email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating mt-3 mb-3" data-aos="fade-left" data-aos-duration="1200">
+                <input type="password"
+                       class="form-control  border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                       id="pwd"
+                       placeholder="Enter password"
+                       name="pwd"
+                       asp-for="Pwd"/>
+                <span asp-validation-for="Pwd" class="text-danger"></span>
+                <label for="pwd">Mật khẩu</label>
+            </div>
+            <div class="form-floating mt-3 mb-3" data-aos="fade-left" data-aos-duration="1300">
+                <input type="password"
+                       class="form-control  border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                       id="pwd"
+                       placeholder="Enter password"
+                       name="rePwd"
+                       asp-for="Pwd" />
+                <span asp-validation-for="Pwd" class="text-danger"></span>
+                <label for="pwd">Xác nhận lại mật khẩu</label>
+            </div>
+            <div class="form-floating mt-3 mb-3" data-aos="fade-left" data-aos-duration="1400">
+                <input type="text"
+                       class="form-control  border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                       id="pwd"
+                       placeholder="Enter password"
+                       asp-for="EUserName"/>
+                <span asp-validation-for="EUserName" class="text-danger"></span>
+                <label for="pwd">Họ tên</label>
+            </div>
+            <div class="form-floating mt-3 mb-3" data-aos="fade-left" data-aos-duration="1500">
+                <textarea type="text"
+                       class="form-control  border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                       id="pwd"
+                       placeholder="Enter password"
+                       cols="10"
+                       rows="5"
+                       asp-for="EUserAddress"><</textarea>
+                <span asp-validation-for="EUserAddress" class="text-danger"></span>
+                <label for="pwd">Địa chỉ</label>
+            </div>
+            <div class="form-floating mt-3 mb-3" data-aos="fade-left" data-aos-duration="1600">
+                <input type="date"
+                       class="form-control  border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                       id="pwd"
+                       placeholder="Enter password" 
+                       asp-for="Birthday"/>
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+                <label for="pwd">Ngày sinh</label>
+            </div>
+            <div class="text-end" data-aos="fade-left" data-aos-duration="1700">
+                <button type="submit"  class="btn btn-primary rounded form-control">Đăng Ký</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

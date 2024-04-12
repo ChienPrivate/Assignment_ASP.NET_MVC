@@ -1,0 +1,83 @@
+﻿@model Product
+<h1 class="pt-4"></h1>
+<div class="container bg-light rounded-4">
+    <div class="row">
+        <div class="col-6 text-center">
+            <img src="@Model.ImageUrl" class="img-fluid mt-2 w-75 h-100"/>
+        </div>
+        <div class="col-6" style="overflow-y: auto; max-height: 560px;">
+            <div class="row mt-2">
+                <div class="d-flex">
+                    <h2>@Model.ProductName </h2> 
+                    <div>
+                        <span class="badge bg-info rounded-4 text-start"> - @Model.Discount%</span>
+                    </div>
+                </div>
+                
+                <div class="col-3"></div>
+
+            </div>
+            <span class="fw-bold">Giá sản phẩm:</span>
+            <p class="fw-bold text-danger text-decoration-line-through pb-0 mb-0"> @Model.Price.ToString("#,##0") đ</p>
+            @{
+                double? finalPrice = Model.Price - (Model.Price * Model.Discount / 100);
+            }
+            <h4 class="">@finalPrice?.ToString("#,##0") đ</h4>
+            <p class="fw-bold">Ngày ra mắt : </p>
+            <p>@Model.RealeaseDate.ToString("dd/MM/yyyy")</p>
+            
+            <p class="fw-bold m-0"> Mô tả:  </p>
+            <p class="rounded bg-secondary">@Model.DescriptionText</p>
+
+            @if (Model.Info != null)
+            {
+                <p class="fw-bold m-0"> Cấu hình:  </p>
+                <p class="rounded bg-secondary">@Model.Info</p>
+            }
+        </div>
+        <div class="">
+            @{
+                int qty = 1;
+            }
+            <form method="post" asp-controller="Home" asp-action="AdjustQuantity">
+                <div class="text-end mt-5 mb-2">
+                    <div class=" mb-4">
+                        <div class="btn-group">
+                            <div class="w-50 d-flex align-items-center me-2">
+                                <h4 class="fw-bold w-100">Số lượng: </h4>
+                            </div>
+                            <button type="submit" asp-controller="Home" asp-action="AdjustQuantity" asp-route-productId="@Model.ProductId" asp-route-quantity="@(Model.ShoppingQuantity - 1)" class="btn btn-dark rounded rounded-end-0">-</button>
+                            <input name="quantity" asp-for=ShoppingQuantity class="form-control w-50 rounded border border-dark-subtle rounded-0" style="" disabled />
+                            <button type="submit" asp-controller="Home" asp-action="AdjustQuantity" asp-route-productId="@Model.ProductId" asp-route-quantity="@(Model.ShoppingQuantity + 1)" class="btn btn-dark rounded rounded-start-0">+</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="text-end">
+                <form method="post" asp-controller="Cart" asp-action="AddToCart">
+                    <div class="mb-2 mt-2 ">
+                        <a asp-action="Index" class="btn btn-outline-warning rounded">Quay trở lại trang chủ</a>
+                        <button type="submit" asp-controller="Cart" asp-action="AddToCart" asp-route-quantity="@Model.ShoppingQuantity" asp-route-productId="@Model.ProductId" class="btn btn-primary rounded">Thêm vào giỏ hàng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@* <script>
+    document.getElementById('decrementButton').addEventListener('click', function() {
+        var quantityInput = document.querySelector('input[name="quantity"]');
+        var currentValue = parseInt(quantityInput.value);
+        if (!isNaN(currentValue) && currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    });
+
+    document.getElementById('incrementButton').addEventListener('click', function() {
+        var quantityInput = document.querySelector('input[name="quantity"]');
+        var currentValue = parseInt(quantityInput.value);
+        if (!isNaN(currentValue)) {
+            quantityInput.value = currentValue + 1;
+        }
+    });
+</script> *@

@@ -1,0 +1,146 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+@model ViewModel
+
+<div class="container">
+    <h2 class="pt-4">Quản Lý Sản Phẩm</h2>
+    <form asp-action="Index">
+        <div class="mb-2 mt-2 ">
+            <label>Tìm kiếm sản phẩm: </label>
+            <div class="input-group">
+                <input name="term" class="form-control border-2 border-black rounded rounded-end-0"/>
+                <button type="submit" class="btn btn-primary rounded rounded-start-0">Tiềm kiếm</button>
+            </div>
+        </div>
+    </form>
+    <div>
+        <div class="text-end">
+            <a class="btn btn-primary rounded-2 rounded-bottom-0" asp-action="Create">
+                Thêm sản phẩm <i class="bi bi-plus-circle"></i>
+            </a>
+        </div>
+        <table class="table">
+            <thead>
+                <th>
+                    Hình ảnh
+                </th>
+                <th>
+                <a asp-action="Index" asp-route-orderBy="@ViewData["SortByName"]">Tên sản phẩm</a>
+                </th>
+                <th>
+                <a asp-action="Index" asp-route-orderBy="@ViewData["SortByPrice"]">Giá</a>
+                </th>
+                <th>Số Lượng</th>
+                <th>Mô Tả</th>
+                <th>Danh mục</th>
+                <th>
+                    <a asp-action="Index" asp-route-orderBy="@ViewData["SortByDate"]">Ngày ra mắt</a>
+                </th>
+                <th>giảm giá</th>
+                <th>Thông tin cấu hình</th>
+                <th>
+                    Thao tác
+                </th>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.Products)
+                {
+                    <tr>
+                        <td>
+                            <img class="img-fluid" src="@obj.ImageUrl" />
+                        </td>
+                        <td>
+                            @obj.ProductName
+                        </td>
+                        <td>
+                            @obj.Price.ToString("#,##0")
+                        </td>
+                        <td>
+                            @obj.ProductQuantity
+                        </td>
+                        <td>
+                            @if (@obj.DescriptionText?.Length > 80)
+                            {
+                                @(obj.DescriptionText?.Substring(0, 50) + "...")
+                            }
+                            else
+                            {
+                                @obj.DescriptionText
+                            }
+                        </td>
+                        <td>
+                            @Model.Categories.Where(c => obj.CategoryId == c.CategoryId).Select(c => c.CategoryName).FirstOrDefault()
+                        </td>
+                        <td>
+                            @obj.RealeaseDate.ToString("dd/MM/yyyy")
+                        </td>
+                        <td >
+                            @obj.Discount%
+                        </td>
+                        <td>
+                            @if (@obj.Info?.Length > 100)
+                            {
+                                @(obj.Info.Substring(0,100) + "...")
+                            }
+                            else
+                            {
+                                @obj.Info
+                            }
+                        </td>
+                        <td>
+                            <a class="form-control rounded btn btn-info fs-6 mb-2" asp-action="Edit" asp-route-id="@obj.ProductId"><i class="bi bi-pencil-square"></i></a>
+                            <a class="form-control rounded btn btn-danger fs-6" asp-action="Delete" asp-route-id="@obj.ProductId"><i class="bi bi-trash3-fill"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    @if (Model.CurrentPage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Previous" asp-action="Index" asp-route-term="@ViewData["CurrentFilter"]" asp-route-orderBy="@ViewData["CurrentSort"]" asp-route-currentPage="@(Model.CurrentPage - 1)">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                    }
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        @if (i == Model.CurrentPage)
+                        {
+                            <li class="page-item">
+                                <a class="page-link active" asp-action="Index"
+                                   asp-route-orderBy="@ViewData["CurrentSort"]"
+                                   asp-route-term="@ViewData["CurrentFilter"]"
+                                   asp-route-currentPage="@i">@(i)</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-action="Index"
+                                   asp-route-orderBy="@ViewData["CurrentSort"]"
+                                   asp-route-term="@ViewData["CurrentFilter"]"
+                                   asp-route-currentPage="@i">@(i)</a>
+                            </li>
+                        }
+                    }
+                    @if (Model.CurrentPage < Model.TotalPages)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" aria-label="Next" asp-action="Index" asp-route-term="@ViewData["CurrentFilter"]" asp-route-orderBy="@ViewData["CurrentSort"]" asp-route-currentPage="@(Model.CurrentPage + 1)">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

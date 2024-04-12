@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+@model Product
+<div>
+    <div class="">
+
+        <form method="post">
+            <input hidden asp-for="ProductId" />
+            <h2 class="pt-4"></h2>
+            <div class="mb-2 mt-1 card rounded container">
+                <div class="card-header">
+                    <h2 class="pt-4 mb-2">Xóa sản phẩm</h2>
+                </div>
+                <div class="row mt-2 mb-2">
+                    <div id="imageContainer" class="col-md-3">
+                        <img src="@ViewBag.ImgUrl" class="img-fluid w-50" />
+                    </div>
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Hình ảnh:</label>
+                    <input id="imageUrl" type="text" asp-for="ImageUrl" class="form-control rounded rounded-top-0 border border-black" disabled />
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Tên sản phẩm :</label>
+                    <input type="text" asp-for="ProductName" class="form-control rounded rounded-top-0 border border-black" disabled />
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Giá sản phẩm :</label>
+                    <input type="number" asp-for="Price" class="form-control rounded rounded-top-0 border border-black" disabled/>
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Số Lượng :</label>
+                    <input type="number" asp-for="ProductQuantity" class="form-control rounded rounded-top-0 border border-black" disabled/>
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Mô tả :</label>
+                    <textarea type="text" asp-for="DescriptionText" class="form-control rounded rounded-top-0 border border-black" cols="30" rows="5" disabled></textarea>
+                </div>
+
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Danh mục:</label>
+                    <select asp-for="CategoryId" asp-items="@ViewBag.CategoryList" class="form-select rounded rounded-top-0 border border-black" disabled>
+                        <optgroup label="Lựa chọn danh mục">
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Giảm giá :</label>
+                    <input type="number" asp-for="Discount" class="form-control rounded rounded-top-0 border border-black" cols="30" rows="5"></input>
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Cấu hình :</label>
+                    <textarea type="text" asp-for="Info" class="form-control rounded rounded-top-0 border border-black" cols="30" rows="5"></textarea>
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="text-white rounded-2 rounded-bottom-0 badge bg-dark fs-5">Tên sản phẩm :</label>
+                    <input type="date" asp-for="@Model.RealeaseDate" class="form-control rounded rounded-top-0 border border-black" disabled/>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-danger form-control">Xóa Sản Phẩm</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary form-control">Quay trở lại danh sách</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

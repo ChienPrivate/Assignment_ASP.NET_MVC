@@ -1,0 +1,135 @@
+﻿@model List<CartViewModel>?
+<div class="container">
+    @{
+        var uId = User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+    }
+    @if (Model != null)
+    {
+        <h2 class="pt-4">
+            Giỏ Hàng
+        </h2>
+        <div class="bg-white">
+            <div class="row bg-light border-0">
+                <div class="col-9 rounded-4">
+                    <div class="text-end">
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark rounded rounded-bottom-0">Tiếp tục mua hàng</a>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <th>
+
+                        </th>
+                        <th>
+                            Sản phẩm
+                        </th>
+                        <th>
+                            Giảm giá
+                        </th>
+                        <th>
+                            Đơn giá
+                        </th>
+                        <th>
+                            số lượng
+                        </th>
+                        <th>
+                            thao tác
+                        </th>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr data-aos="fade-fade-right" data-aos-duration="1000">
+                                    <td></td>
+                                    <td style="width:30%">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <img src="@i.Product.ImageUrl" class="img-fluid" />
+                                            </div>
+                                            <div class="col-4">
+                                                <span>@i.Product.ProductName</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        @i.Product.Discount%
+                                    </td>
+                                    <td>
+                                        @i.Product.Price.ToString("#,##0")
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <form method="post">
+                                                <button type="submit" asp-route-cartId="@i.CartId" asp-route-productId="@i.Product.ProductId" asp-route-uId="@uId" asp-route-quantity="@(i.Quantity-1)" asp-action="ModifyQuantity" class="btn btn-outline-info rounded">-</button>
+                                            </form>
+                                            <div>
+                                                <input type="number" class="form-control border-0" value="@i.Quantity" disabled />
+                                            </div>
+                                            <form method="post">
+                                                <button type="submit" asp-route-cartId="@i.CartId" asp-route-productId="@i.Product.ProductId" asp-route-uId="@uId" asp-route-quantity="@(i.Quantity+1)" asp-action="ModifyQuantity" class="btn btn-outline-info rounded">+</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <form asp-action="Delete">
+                                            <button type="submit" asp-route-uId="@uId" asp-route-cartId="@i.CartId" asp-route-productId="@i.Product.ProductId" asp-controller="Cart" asp-action="Delete" class="btn btn-danger rounded">Xóa</button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-3">
+                    <div class="card rounded bg-white" data-aos="fade-down">
+                        <nav class="navbar navbar-expand-sm bg-light navbar-dark sticky-top rounded p-0 m-0 d-block border-0">
+                            <div class="container-fluid d-block rounded mb-2">
+                                <div class="navbar-brand text-dark p-0 fs-5 fw-bolder mb-2 pt-2 hide-text">
+                                    Thanh toán
+                                </div>
+                                <hr />
+                                <div class="mb-2">
+                                    <h6>
+                                        Thông tin đơn hàng
+                                    </h6>
+                                </div>
+                                @{
+                                    int qty = 0;
+                                    double total = 0;
+                                    double? discount = 0;
+
+                                    foreach (var i in Model)
+                                    {
+                                        qty += i.Quantity;
+                                        total += i.Product.Price * i.Quantity;
+                                        discount += (i.Product.Price * i.Product.Discount / 100) * i.Quantity;
+                                    }
+                                    double? final = total - discount;
+                                }
+                                <div class=" justify-content-sm-between text-lowercase fs-5">
+                                    <p class="p-0 m-0 mb-1 ">Số lượng : @qty sản phẩm</p>
+                                    <p class="p-0 m-0 mb-1">Tạm Tính: @total.ToString("#,##0") vnđ</p>
+                                    <p class="p-0 m-0 mb-1">Giảm giá: @discount?.ToString("#,##0") vnđ</p>
+                                    <hr />
+                                    <p class="p-0 m-0 mb-1">Thành tiền: @final?.ToString("#,##0") vnđ</p>
+                                </div>
+                                <hr />
+                                <div>
+                                    <form method="post" asp-controller="Cart" asp-action="PayMent">
+                                        <button type="submit" asp-controller="Cart" asp-action="PayMent" class="btn btn-warning form-control rounded">Thanh toán</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center bg-white">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark rounded">Tiếp tục Mua sắm</a>
+        </div>
+    }
+</div>

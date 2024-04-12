@@ -1,0 +1,59 @@
+﻿@model LoginRequest
+
+<div class="background-image-1" style="min-height:700px">
+    <div class="container">
+        <h1 class="pt-4"></h1>
+
+        <div class="bg-light border-0 rounded w-50 d-block mx-auto" data-aos="flip-left">
+
+            <form class="container" method="post">
+                <div class="text-center">
+                    <h1 class="pt-4">
+                        Samsung account
+                    </h1>
+                </div>
+                <div class="form-floating mb-3 mt-3">
+                    <input type="text"
+                           class="form-control border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                           id="email"
+                           placeholder="Enter email"
+                           asp-for="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-floating mt-3 mb-3">
+                    <input type="password"
+                           class="form-control  border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                           id="pwd"
+                           placeholder="Enter password"
+                           asp-for="Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <label for="pwd">Password</label>
+                </div>
+                <div class="mt-4 mb-2 d-flex justify-content-between">
+                    <div class="form-check">
+                        <input type="checkbox" class="m-0 p-0" asp-for="KeepLogIn" />
+                        <label for="remember" class="form-check-label">Ghi nhớ đăng nhập</label>
+                    </div>
+                    <a class="text-decoration-underline" asp-action="Register">Bạn chư có tài khoản ?</a>
+                </div>
+                <div class="text-end mb-2">
+                    <a class="text-decoration-underline" asp-action="ForgotPassword">Quên mật khẩu</a>
+                </div>
+                <div class="text-end pb-4">
+                    <button type="submit" class="btn btn-primary rounded form-control">Đăng nhập</button>
+                </div>
+                <div>
+                    <a asp-controller="Admin" asp-action="Login"><i class="bi bi-gear"></i> Tài khoản kỹ thuật</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

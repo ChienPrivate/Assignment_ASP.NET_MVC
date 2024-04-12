@@ -1,0 +1,160 @@
+﻿@{
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "_AdminLayout";
+    }
+}
+@model EUser
+<h1 class="pt-5"></h1>
+<div class="container mt-2 mb-2">
+    <h2>Thông tin tài khoản</h2>
+</div>
+<div class="container mt-2 mb-2">
+    <div class="bg-body">
+        <div class="row">
+            <div class="col-md-7 border-end">
+                <div class="container mt-1">
+                    <form>
+                        <div class="d-flex">
+                            <div>
+                                <a href=""><img src="https://images.samsung.com/is/image/samsung/assets/vn/about-us/brand/logo/mo/256_144_4.png?$512_N_PNG$" alt="" class="rounded-circle w-75 mb-2"></a>
+                            </div>
+                            <div class="container">
+                                <div class="">
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <label for="" class="">Họ & tên</label>
+                                        <div class="w-75">
+                                            <input asp-for="EUserName" class="w-100 form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                @* <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <label for="" class="me-5">Biệt danh</label>
+                                    <div class="w-75">
+                                        <input readonly type="text" class="form-control" ng-model="nickname">
+                                    </div>
+                                </div> *@
+                            </div>
+                        </div>
+                        <div class="d-flex mb-2 mt-2">
+                            <label for="" class="mb-1 w-25 d-flex align-items-center">
+                                Ngày sinh
+                            </label>
+                            <input readonly type="text" class="form-control" asp-for="Birthday" placeholder="yyyy-MM-dd">
+                        </div>
+                        @* <div class="d-flex mb-2 mt-2">
+                            <label for="" class="mb-1 w-25 d-flex align-items-center">
+                                Giới tính
+                            </label>
+                            <div class="form-control border-0">
+                                <input type="radio" ng-model="sex" ng-value="1"> <label>Nam</label>
+                                <input type="radio" ng-model="sex" ng-value="0"> <label>Nữ </label>
+                            </div>
+                        </div> *@
+                        <div class="d-flex mb-2 mt-2">
+                            <label for="" class="mb-1 w-25 d-flex align-items-center">
+                                Địa chỉ
+                            </label>
+                            @* <input readonly id="" class="form-control" ng-model="nationality">
+                            </input> *@
+                            <textarea asp-for="EUserAddress" class="form-control">
+                            </textarea>
+                        </div>
+                        <div class=" text-center p-5">
+                            <a asp-controller="Auth" asp-action="Logout" class="btn btn-outline-danger rounded">Đăng Xuất</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-5">
+                @* <div class="container mt-1">
+                    <p class="text-secondary">Số điện thoại và Email</p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex ">
+                            <div class="me-1">
+                                <i class="fa-solid fa-phone text-secondary"></i>
+                            </div>
+                            <div>
+                                <span>Số điện thoại</span>
+                                <br>
+                                <span>{{phone}}</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary">Cập nhật</button>
+                    </div>
+                </div> *@
+                <div class="container mt-2">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex ">
+                            <div class="me-1">
+                                <i class="fa-solid fa-envelope text-secondary"></i>
+                            </div>
+                            <div>
+                                <span>Địa chỉ email</span>
+                                <br>
+                                <span>@Model.Email</span>
+                            </div>
+                        </div>
+                        <a asp-controller="" asp-action="" class="btn btn-outline-primary rounded">Cập nhật</a>
+                    </div>
+                </div>
+                <div class="container mt-1">
+                    <p class="text-secondary">Bảo mật</p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex ">
+                            <div class="me-1">
+                                <i class="fa-solid fa-key text-secondary"></i>
+                            </div>
+                            <div>
+                                <span>Đổi mật khẩu</span>
+                            </div>
+                        </div>
+                        <a asp-controller="Auth" asp-action="ChangePassword" class="btn btn-outline-primary rounded">
+                            Cập nhật
+                        </a>
+                    </div>
+                </div>
+                <div class="container mt-2">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex ">
+                            <div class="me-1">
+                                <i class="fa-solid fa-lock text-secondary"></i>
+                            </div>
+                            <div>
+                                <span>Thiết lập mã pin</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline-primary rounded rounded">Thiết lập</a>
+                    </div>
+                </div>
+                <div class="container mt-1">
+                    <p class="text-secondary">Liên kết mạng xã hội</p>
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex ">
+                            <div class="me-1">
+                                <i class="fa-brands fa-facebook text-info"></i>
+                            </div>
+                            <div>
+                                <span>Facebook</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline-primary rounded">Liên kết</a>
+                    </div>
+                </div>
+                <div class="container mt-2">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex ">
+                            <div class="me-1">
+                                <i class="fa-brands fa-google text-bg-danger rounded"></i>
+                            </div>
+                            <div>
+                                <span>Google</span>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline-primary rounded">Liên kết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
