@@ -14,7 +14,7 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
     {
         private readonly ApplicationDbContext _db;
         public Common.CommonMethods _methods;
-        public ProductController(ApplicationDbContext db,CommonMethods methods)
+        public ProductController(ApplicationDbContext db, CommonMethods methods)
         {
             _db = db;
             _methods = methods;
@@ -101,6 +101,7 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
         {
             string newId = _methods.GenerateNewProductId();
             obj.ProductId = newId;
+            obj.CreatedDate = DateTime.Now;
 
             if (ModelState.IsValid)
             {
@@ -142,6 +143,7 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
         {
             if (ModelState.IsValid)
             {
+                obj.UpdatedOn = DateTime.Now;
                 _db.Product.Update(obj);
                 _db.SaveChanges();
                 TempData["success"] = "Cập nhật sản phẩm thành công";
@@ -177,22 +179,5 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
             TempData["success"] = "Xóa sản phẩm thành công";
             return RedirectToAction("Index");
         }
-
-        #region Support Method
-        
-
-        public string Encryption(string pwd)
-        {
-            byte[] pwdBytes = Encoding.UTF8.GetBytes(pwd);
-            MD5 md5 = MD5.Create();
-            byte[] encryptBytes = md5.ComputeHash(pwdBytes);
-            StringBuilder pwdString = new StringBuilder();
-            for (int i = 0; i < encryptBytes.Length; i++)
-            {
-                pwdString.Append(encryptBytes[i].ToString("x2"));
-            }
-            return pwdString.ToString();
-        }
-        #endregion
     }
 }

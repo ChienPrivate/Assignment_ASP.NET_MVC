@@ -24,6 +24,8 @@ CREATE TABLE Category(
 	CategoryId VARCHAR(50) NOT NULL,
 	CategoryName NVARCHAR(100) NOT NULL,
 	DisplayOrder INT,
+	CreatedDate DATETIME,
+	UpdatedOn DATETIME
 	CONSTRAINT PK_Category PRIMARY KEY (CategoryId)
 )
 GO
@@ -39,7 +41,9 @@ CREATE TABLE Product(
 	CategoryId VARCHAR(50),
 	Discount FLOAT,
 	Info NVARCHAR(MAX),
-	RealeaseDate DATE
+	RealeaseDate DATETIME,
+	CreatedDate DATETIME,
+	UpdatedOn DATETIME
 	CONSTRAINT PK_Product PRIMARY KEY (ProductId),
 	CONSTRAINT FK_Product_Category FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
 )
@@ -154,8 +158,8 @@ GO
 --4.7 Câu lệnh Insert dữ liệu cho bang CartDetails
 INSERT INTO CartDetails(CartId,ProductId,Quantity)
 VALUES
-	('C001','P001',35),
-	('C001','P002',35),
-	('C001','P003',35),
-	('C001','P004',35),
-	('C001','P005',35)
+	('C001','P001',1),
+	('C001','P002',1),
+	('C001','P003',1),
+	('C001','P004',1),
+	('C001','P005',1)

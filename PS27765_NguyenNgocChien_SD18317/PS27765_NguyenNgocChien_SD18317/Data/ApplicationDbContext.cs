@@ -22,18 +22,6 @@ namespace PS27765_NguyenNgocChien_SD18317.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            /*modelBuilder.Entity<CartDetails>()
-        .   HasKey(cd => new { cd.CartId, cd.ProductId });
-
-            modelBuilder.Entity<CartDetails>()
-                .HasOne(cd => cd.Cart)
-                .WithMany()
-                .HasForeignKey(cd => cd.CartId);
-
-            modelBuilder.Entity<CartDetails>()
-                .HasOne(cd => cd.Product)
-                .WithMany()
-                .HasForeignKey(cd => cd.ProductId);*/
             modelBuilder.Entity<CartDetails>()
             .HasKey(cd => new { cd.CartId, cd.ProductId });
 

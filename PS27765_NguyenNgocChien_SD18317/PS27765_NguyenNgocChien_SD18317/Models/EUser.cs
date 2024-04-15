@@ -11,6 +11,8 @@ namespace PS27765_NguyenNgocChien_SD18317.Models
         public string Email { get; set; }
         [Required(ErrorMessage = "không thể để trống mật khẩu")]
         public string Pwd { get; set; }
+        [Required(ErrorMessage = "Số điện thoại không thể trống")]
+        public string PhoneNumber { get; set; }
         [Required(ErrorMessage = "Họ tên không thể trống")]
         public string EUserName { get; set; }
         [Required(ErrorMessage = "Không thể để trống ngày sinh")]
