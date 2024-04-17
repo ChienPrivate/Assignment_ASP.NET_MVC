@@ -2403,35 +2403,6 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
-      "PagedList/1.17.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/PagedList.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net40/PagedList.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "PagedList.Mvc/4.5.0": {
-        "type": "package",
-        "dependencies": {
-          "PagedList": "1.17.0"
-        },
-        "compile": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "related": ".XML"
-          }
-        },
-        "runtime": {
-          "lib/net40/PagedList.Mvc.dll": {
-            "related": ".XML"
-          }
-        }
-      },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.6": {
         "type": "package",
         "dependencies": {
@@ -7447,33 +7418,6 @@
         "nuget.versioning.nuspec"
       ]
     },
-    "PagedList/1.17.0": {
-      "sha512": "Ou6F3WKXh49hOo0TxWM+SkIGuKllYPuPPvnSYOlQ1sTrtuEyuDUhYbSJd5Sdb06i/sWUJZTjiUecEs3Ht/Hx3g==",
-      "type": "package",
-      "path": "pagedlist/1.17.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/PagedList.dll",
-        "lib/net40/PagedList.xml",
-        "pagedlist.1.17.0.nupkg.sha512",
-        "pagedlist.nuspec"
-      ]
-    },
-    "PagedList.Mvc/4.5.0": {
-      "sha512": "D0M4qW2g4a9cwG8ozIKUnJheCrm5GpFTceqUl63AXWaAVnTgk+TysZYUOGMsBRuzid8aF+/E8b0bXM6+90jiEw==",
-      "type": "package",
-      "path": "pagedlist.mvc/4.5.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Content/PagedList.css",
-        "lib/net40/PagedList.Mvc.XML",
-        "lib/net40/PagedList.Mvc.dll",
-        "pagedlist.mvc.4.5.0.nupkg.sha512",
-        "pagedlist.mvc.nuspec"
-      ]
-    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.6": {
       "sha512": "BmAf6XWt4TqtowmiWe4/5rRot6GerAeklmOPfviOvwLoF5WwgxcJHAxZtySuyW9r9w+HLILnm8VfJFLCUJYW8A==",
       "type": "package",
@@ -8931,8 +8875,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.0-preview.1.24081.2",
       "Microsoft.EntityFrameworkCore.Sqlite >= 8.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0-preview.1.24081.2",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.2",
-      "PagedList.Mvc >= 4.5.0"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.2"
     ]
   },
   "packageFolders": {
@@ -9013,10 +8956,6 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[8.0.2, )"
-          },
-          "PagedList.Mvc": {
-            "target": "Package",
-            "version": "[4.5.0, )"
           }
         },
         "imports": [
@@ -9041,27 +8980,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.2.23502.2/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'PagedList 1.17.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "PagedList",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'PagedList.Mvc 4.5.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "PagedList.Mvc",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

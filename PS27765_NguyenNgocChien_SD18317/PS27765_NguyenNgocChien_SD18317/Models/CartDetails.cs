@@ -11,7 +11,9 @@ namespace PS27765_NguyenNgocChien_SD18317.Models
         public string ProductId { get; set; }
         [Required]
         public int Quantity { get; set; } = 1;
+        [ForeignKey(nameof(ProductId))]
         public Product? Product { get; set; }
+        [ForeignKey(nameof(CartId))]
         public Cart? Cart { get; set; }
     }
 }

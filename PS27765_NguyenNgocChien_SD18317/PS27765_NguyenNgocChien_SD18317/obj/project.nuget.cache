@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QgvgRuVgg9SbmhXZwLWKbbVRmBwyi9V2bGf9ylUIKj7x2m3YH/Xfclg4OXmbrl0qs0xmZ2VRh4MSS6VexTZ3DQ==",
+  "dgSpecHash": "LiLLMlaR1DgupP8c0uxBm5np3smKd7AN9ILMKcK6Tj/9Y3IkwLlMFfOgzIAovYaWUpFD0mvi5DCCVbpwc5YgBA==",
   "success": true,
   "projectFilePath": "D:\\NET104_ASP.NET_C#4_K5\\Exercise\\05_PS27765_NguyenNgocChien_Assignment2\\PS27765_NguyenNgocChien_SD18317\\PS27765_NguyenNgocChien_SD18317\\PS27765_NguyenNgocChien_SD18317.csproj",
   "expectedPackageFiles": [
@@ -144,8 +144,6 @@
     "C:\\Users\\ASUS\\.nuget\\packages\\nuget.projectmodel\\6.9.1\\nuget.projectmodel.6.9.1.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
-    "C:\\Users\\ASUS\\.nuget\\packages\\pagedlist\\1.17.0\\pagedlist.1.17.0.nupkg.sha512",
-    "C:\\Users\\ASUS\\.nuget\\packages\\pagedlist.mvc\\4.5.0\\pagedlist.mvc.4.5.0.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\sqlitepclraw.core\\2.1.6\\sqlitepclraw.core.2.1.6.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.6\\sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",
@@ -190,26 +188,5 @@
     "C:\\Users\\ASUS\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'PagedList 1.17.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "PagedList",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'PagedList.Mvc 4.5.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
-      "libraryId": "PagedList.Mvc",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

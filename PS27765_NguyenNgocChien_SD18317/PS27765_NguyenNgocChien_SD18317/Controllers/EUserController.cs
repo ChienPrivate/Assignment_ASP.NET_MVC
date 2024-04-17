@@ -49,6 +49,17 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userCart = _db.Cart.FirstOrDefault(u => u.EUserId == obj.EUserId);
+                if (userCart == null && obj.IsConfirm == true)
+                {
+                    Cart newCart = new Cart() 
+                    {
+                        CartId = _methods.GenerateNewCartId(),
+                        EUserId = obj.EUserId,
+                    };
+                    _db.Cart.Add(newCart);
+                    _db.SaveChanges();
+                }
                 _db.EUser.Update(obj);
                 _db.SaveChanges();
                 TempData["success"] = "Cập nhật người dùng thành công";
@@ -135,6 +146,17 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
             user.Pwd = pwd;
             if (ModelState.IsValid)
             {
+                var userCart = _db.Cart.FirstOrDefault(u => u.EUserId == user.EUserId);
+                if (userCart == null && user.IsConfirm == true)
+                {
+                    Cart newCart = new Cart()
+                    {
+                        CartId = _methods.GenerateNewCartId(),
+                        EUserId = user.EUserId,
+                    };
+                    _db.Cart.Add(newCart);
+                    _db.SaveChanges();
+                }
                 _db.EUser.Add(user);
                 _db.SaveChanges();
                 TempData["success"] = "Thêm người dùng thành công";

@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using PS27765_NguyenNgocChien_SD18317.Common;
 using PS27765_NguyenNgocChien_SD18317.Data;
 using PS27765_NguyenNgocChien_SD18317.Models;
+using PS27765_NguyenNgocChien_SD18317.Models.DTO;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;

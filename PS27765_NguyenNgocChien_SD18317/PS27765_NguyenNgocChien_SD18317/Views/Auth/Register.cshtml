@@ -50,6 +50,15 @@
                 <span asp-validation-for="EUserName" class="text-danger"></span>
                 <label for="pwd">Họ tên</label>
             </div>
+            <div class="form-floating mt-3 mb-3" data-aos="fade-left" data-aos-duration="1400">
+                <input type="text"
+                       class="form-control  border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "
+                       id="pwd"
+                       placeholder="Enter password"
+                       asp-for="Phone" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+                <label for="pwd">Số điện thoại</label>
+            </div>
             <div class="form-floating mt-3 mb-3" data-aos="fade-left" data-aos-duration="1500">
                 <textarea type="text"
                        class="form-control  border-4 border-top-0 border-start-0 border-end-0 bg-light rounded "

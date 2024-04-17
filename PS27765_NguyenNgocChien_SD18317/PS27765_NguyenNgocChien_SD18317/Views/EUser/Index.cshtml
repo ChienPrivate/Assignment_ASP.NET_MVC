@@ -20,37 +20,42 @@
     <div class="tab-content">
         <div class="tab-pane container active" id="home">
             
-            <div class="text-end">
+            <div class="">
                 <a class="btn btn-primary rounded-2 rounded-bottom-0" asp-action="Create">
                     Thêm người dùng <i class="bi bi-person-add fs-2"></i>
                 </a>
             </div>
             <table class="table">
                 <thead>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Họ tên
-                </th>
-                <th>
-                    Địa chỉ
-                </th>
-                <th>
-                    Ngày sinh
-                </th>
-                <th>
-                    Vai trò
-                </th>
-                <th>
-                    Trạng thái
-                </th>
-                <th>
-                    thao tác
-                </th>
+                <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Họ tên
+                        </th>
+                        <th>
+                            Điện thoại
+                        </th>
+                        <th>
+                            Địa chỉ
+                        </th>
+                        <th>
+                            Ngày sinh
+                        </th>
+                        <th>
+                            Vai trò
+                        </th>
+                        <th>
+                            Trạng thái
+                        </th>
+                        <th>
+                            thao tác
+                        </th>
+                </tr>
                 </thead>
                 <tbody>
                     @foreach (var u in Model.Where(u => u.EUserRole == "Customer"))
@@ -59,6 +64,7 @@
                             <td>@u.EUserId</td>
                             <td>@u.Email</td>
                             <td>@u.EUserName</td>
+                            <td>@u.Phone</td>
                             <td>@u.EUserAddress</td>
                             <td>@u.Birthday.ToString("dd/MM/yyyy")</td>
                             <td>@u.EUserRole</td>
@@ -82,7 +88,7 @@
             </table>
         </div>
         <div class="tab-pane container fade" id="menu1">
-            <div class="text-end">
+            <div class="">
                 <a class="btn btn-primary rounded-2 rounded-bottom-0" asp-action="Create">
                     Thêm người dùng <i class="bi bi-person-add fs-2"></i>
                 </a>

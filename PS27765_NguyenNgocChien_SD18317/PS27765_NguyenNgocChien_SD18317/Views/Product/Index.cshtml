@@ -2,7 +2,7 @@
     Layout = "_AdminLayout";
 }
 
-@model ViewModel
+@model PS27765_NguyenNgocChien_SD18317.Models.ViewModels.ViewModel
 
 <div class="container">
     <h2 class="pt-4">Quản Lý Sản Phẩm</h2>
@@ -16,33 +16,37 @@
         </div>
     </form>
     <div>
-        <div class="text-end">
+        <div class="">
             <a class="btn btn-primary rounded-2 rounded-bottom-0" asp-action="Create">
                 Thêm sản phẩm <i class="bi bi-plus-circle"></i>
             </a>
         </div>
         <table class="table">
             <thead>
-                <th>
-                    Hình ảnh
-                </th>
-                <th>
-                <a asp-action="Index" asp-route-orderBy="@ViewData["SortByName"]">Tên sản phẩm</a>
-                </th>
-                <th>
-                <a asp-action="Index" asp-route-orderBy="@ViewData["SortByPrice"]">Giá</a>
-                </th>
-                <th>Số Lượng</th>
-                <th>Mô Tả</th>
-                <th>Danh mục</th>
-                <th>
-                    <a asp-action="Index" asp-route-orderBy="@ViewData["SortByDate"]">Ngày ra mắt</a>
-                </th>
-                <th>giảm giá</th>
-                <th>Thông tin cấu hình</th>
-                <th>
-                    Thao tác
-                </th>
+                <tr>
+                    <th>
+                        Hình ảnh
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-orderBy="@ViewData["SortByName"]">Tên sản phẩm</a>
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-orderBy="@ViewData["SortByPrice"]">Giá</a>
+                    </th>
+                    <th>Số Lượng</th>
+                    <th>Mô Tả</th>
+                    <th>Danh mục</th>
+                    <th>
+                        <a asp-action="Index" asp-route-orderBy="@ViewData["SortByDate"]">Ngày ra mắt</a>
+                    </th>
+                    <th>giảm giá</th>
+                    <th>Thông tin cấu hình</th>
+                    <th>Ngày thêm sản phẩm</th>
+                    <th>Ngày cập nhật</th>
+                    <th>
+                        Thao tác
+                    </th>
+                </tr>
             </thead>
             <tbody>
                 @foreach (var obj in Model.Products)
@@ -89,6 +93,8 @@
                                 @obj.Info
                             }
                         </td>
+                        <td>@obj.CreatedDate</td>
+                        <td>@obj.UpdatedOn</td>
                         <td>
                             <a class="form-control rounded btn btn-info fs-6 mb-2" asp-action="Edit" asp-route-id="@obj.ProductId"><i class="bi bi-pencil-square"></i></a>
                             <a class="form-control rounded btn btn-danger fs-6" asp-action="Delete" asp-route-id="@obj.ProductId"><i class="bi bi-trash3-fill"></i></a>

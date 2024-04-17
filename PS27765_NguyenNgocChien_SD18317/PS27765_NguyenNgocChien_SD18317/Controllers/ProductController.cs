@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using PS27765_NguyenNgocChien_SD18317.Common;
 using PS27765_NguyenNgocChien_SD18317.Data;
 using PS27765_NguyenNgocChien_SD18317.Models;
+using PS27765_NguyenNgocChien_SD18317.Models.ViewModels;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -45,6 +46,8 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
                                 RealeaseDate = emp.RealeaseDate,
                                 Discount = emp.Discount,
                                 Info = emp.Info,
+                                CreatedDate = emp.CreatedDate,
+                                UpdatedOn = emp.UpdatedOn
                             });
             List<Category> categories = _db.Category.ToList();
             empData.Categories = categories;
@@ -102,7 +105,6 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
             string newId = _methods.GenerateNewProductId();
             obj.ProductId = newId;
             obj.CreatedDate = DateTime.Now;
-
             if (ModelState.IsValid)
             {
                 _db.Product.Add(obj);

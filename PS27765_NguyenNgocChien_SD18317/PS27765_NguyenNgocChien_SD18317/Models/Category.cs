@@ -9,8 +9,8 @@ namespace PS27765_NguyenNgocChien_SD18317.Models
         [Required]
         public string CategoryName { get; set; }
         public int DisplayOrder { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedOn { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedOn { get; set; }
         ICollection<Product>? Products { get; set; }
     }
 }

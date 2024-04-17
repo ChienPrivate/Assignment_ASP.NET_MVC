@@ -22,8 +22,8 @@ namespace PS27765_NguyenNgocChien_SD18317.Models
         public string? Info { get; set;}
         [Required(ErrorMessage = "Không thể để trống ngày ra mắt")]
         public DateTime RealeaseDate { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedOn { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedOn { get; set; }
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }
         [NotMapped]

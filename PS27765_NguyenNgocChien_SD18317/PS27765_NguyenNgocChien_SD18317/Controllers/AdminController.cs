@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
 using System.Security.Claims;
 using PS27765_NguyenNgocChien_SD18317.Data;
-using PS27765_NguyenNgocChien_SD18317.Models;
 using PS27765_NguyenNgocChien_SD18317.Common;
+using PS27765_NguyenNgocChien_SD18317.Models.DTO;
 
 namespace PS27765_NguyenNgocChien_SD18317.Controllers
 {

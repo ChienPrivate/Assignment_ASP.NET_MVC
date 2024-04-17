@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using PS27765_NguyenNgocChien_SD18317.Common;
 using PS27765_NguyenNgocChien_SD18317.Data;
 using PS27765_NguyenNgocChien_SD18317.Models;
+using PS27765_NguyenNgocChien_SD18317.Models.ViewModels;
 using System.Linq;
 
 namespace PS27765_NguyenNgocChien_SD18317.Controllers
@@ -53,10 +54,21 @@ namespace PS27765_NguyenNgocChien_SD18317.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(CartDetails? cartDetails,string cartId, string productId, int quantity)
+        public async Task<IActionResult> Index(CartDetails? cartDetails,string cartId,string userId, string productId, int quantity)
         {
             cartDetails.CartId = cartId;
             cartDetails.ProductId = productId;
+            var userCart = await _db.Cart.FirstOrDefaultAsync(c => c.EUserId == userId);
+            if (userCart == null)
+            {
+                Cart newCart = new Cart()
+                {
+                    EUserId = userId,
+                    CartId = _methods.GenerateNewCartId(),
+                };
+                _db.Cart.Add(newCart);
+                _db.SaveChanges();
+            }
             var existProd =  _db.CartDetails.FirstOrDefault(cd => cd.CartId == cartId && cd.ProductId == productId);
             if (existProd != null)
             {
