@@ -10,11 +10,11 @@
 USE master
 GO
 
-CREATE DATABASE MVC_Samsung_Database
+CREATE DATABASE MVC_SamSamStore_Database
 GO
 
 -- 2. Câu lệnh trỏ đến CSDL đã tạo
-USE MVC_Samsung_Database
+USE MVC_SamSamStore_Database
 GO
 
 -- 3. Câu lệnh tạo bảng
@@ -49,7 +49,14 @@ CREATE TABLE Product(
 )
 GO
 
-
+CREATE TABLE ProductImgs(
+	ImgId INT IDENTITY(1,1),
+	ImgUrl NVARCHAR(MAX),
+	ProductId VARCHAR(50),
+	CONSTRAINT PK_ProductImgs PRIMARY KEY (ImgId),
+	CONSTRAINT FK_ProductImgs_Product FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
+)
+GO
 
 -- 3.3 Câu lệnh tạo bảng EUser (Người dùng)
 CREATE TABLE EUser(
@@ -57,6 +64,7 @@ CREATE TABLE EUser(
 	Email VARCHAR(100) NOT NULL,
 	Pwd VARCHAR(100) NOT NULL,
 	EUserName NVARCHAR(100) NOT NULL,
+	Phone VARCHAR(15),
 	EUserAddress NVARCHAR(100),
 	BirthDay DATE NOT NULL,
 	EUserRole VARCHAR(100) NOT NULL,
@@ -67,7 +75,7 @@ GO
 
 -- 3.4 Câu lệnh tạo bảng Coupon (Phiếu giảm giá)
 CREATE TABLE Coupon(
-	CouponCode VARCHAR(50) NOT NULL,
+	CouponCode VARCHAR(100) NOT NULL,
 	Discount FLOAT,
 	MinAmount INT,
 	CONSTRAINT PK_Coupon PRIMARY KEY (CouponCode)
@@ -77,8 +85,10 @@ CREATE TABLE Coupon(
 CREATE TABLE Cart(
 	CartId VARCHAR(50) NOT NULL,
 	EUserId VARCHAR(50) NOT NULL,
+	CouponCode VARCHAR(100),
 	CONSTRAINT PK_Cart PRIMARY KEY (CartId),
-	CONSTRAINT FK_Cart_Product FOREIGN KEY (EUserId) REFERENCES EUser(EUserId)
+	CONSTRAINT FK_Cart_Product FOREIGN KEY (EUserId) REFERENCES EUser(EUserId),
+	CONSTRAINT FK_Cart_Coupon FOREIGN KEY (CouponCode) REFERENCES Coupon(CouponCode)
 )
 GO
 
@@ -141,25 +151,15 @@ GO
 
 DECLARE @HashedPwd VARCHAR(64)
 EXEC HashPwd 'abc123', @HashedPwd OUTPUT
-INSERT INTO EUser (EUserId,Email,Pwd,EUserName,EUserAddress,BirthDay,EUserRole,IsConfirm)
+INSERT INTO EUser (EUserId,Email,Pwd,EUserName,Phone,EUserAddress,BirthDay,EUserRole,IsConfirm)
 VALUES
-	('EU001','chienprivate@gmail.com',@HashedPwd,N'Nguyễn Ngọc Chiến',N'50/7 Trần Quan Diệu, Quận 8, TP.HCM','2002-01-01','Admin',1),
-	('EU002','chiennnps27765@gmail.com',@HashedPwd,N'Vũ Vãn Tường',N'100 Tô Hiến Thành, Quận 10, TP.HCM','2002-02-01','Customer',0),
-	('EU003','anhlahb@gmail.com',@HashedPwd,N'Mai Gia Đào',N'27/6/1 Hoàng Diệu, Quận 4, TP.HCM','2002-02-01','Customer',0)
+	('EU001','chienprivate@gmail.com',@HashedPwd,N'Nguyễn Ngọc Chiến','0937806350',N'50/7 Trần Quan Diệu, Quận 8, TP.HCM','2002-01-01','Admin',1),
+	('EU002','chiennnps27765@gmail.com',@HashedPwd,N'Vũ Vãn Tường','0986273824',N'100 Tô Hiến Thành, Quận 10, TP.HCM','2002-02-01','Customer',0),
+	('EU003','anhlahb@gmail.com',@HashedPwd,N'Mai Gia Đào','0872648284',N'27/6/1 Hoàng Diệu, Quận 4, TP.HCM','2002-02-01','Customer',0)
 GO
-
---4.6 Câu lệnh Insert dữ liệu cho bảng Cart
-INSERT INTO Cart(CartId,EUserId)
+DECLARE @HashedPwd VARCHAR(64)
+EXEC HashPwd 'abc123', @HashedPwd OUTPUT
+INSERT INTO EUser (EUserId,Email,Pwd,EUserName,Phone,EUserAddress,BirthDay,EUserRole,IsConfirm)
 VALUES
-	('C001','EU001'),
-	('EU002','EU002')
+	('EU003','anhlahb@gmail.com',@HashedPwd,N'Mai Gia Đào','0872648284',N'27/6/1 Hoàng Diệu, Quận 4, TP.HCM','2002-02-01','Customer',0)
 GO
-
---4.7 Câu lệnh Insert dữ liệu cho bang CartDetails
-INSERT INTO CartDetails(CartId,ProductId,Quantity)
-VALUES
-	('C001','P001',1),
-	('C001','P002',1),
-	('C001','P003',1),
-	('C001','P004',1),
-	('C001','P005',1)
